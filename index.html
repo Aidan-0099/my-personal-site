@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>诸葛璐瑶 | 个人作品集</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#5465c4',
+            dark: '#1E293B',
+            bg: '#FAFAFA',
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', 'Microsoft YaHei', system-ui, sans-serif;
+      background: #FAFAFA;
+      color: #1E293B;
+      overflow-x: hidden;
+    }
+
+    /* Mesh Gradient Background */
+    .mesh-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .mesh-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .blob-1 {
+      width: 700px;
+      height: 700px;
+      background: linear-gradient(135deg, #5465c4 0%, #7c6db8 50%, #a78bca 100%);
+      top: -250px;
+      right: -150px;
+      animation-delay: 0s;
+    }
+
+    .blob-2 {
+      width: 500px;
+      height: 500px;
+      background: linear-gradient(135deg, #94d3e4 0%, #a8e0d4 50%, #c4f0e8 100%);
+      bottom: -200px;
+      left: -100px;
+      animation-delay: -7s;
+    }
+
+    .blob-3 {
+      width: 600px;
+      height: 600px;
+      background: linear-gradient(135deg, #d4c5e8 0%, #e8dff0 50%, #f0eaf5 100%);
+      top: 40%;
+      left: 30%;
+      animation-delay: -14s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(30px, -40px) rotate(5deg); }
+      50% { transform: translate(-20px, 20px) rotate(-3deg); }
+      75% { transform: translate(40px, 30px) rotate(7deg); }
+    }
+
+    /* Snap Scrolling */
+    .snap-container {
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .snap-section {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      position: relative;
+    }
+
+    /* Glass Effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 8px 40px rgba(84, 101, 196, 0.08);
+    }
+
+    .glass-hover:hover {
+      background: rgba(255, 255, 255, 0.8);
+      border-color: rgba(84, 101, 196, 0.3);
+      box-shadow: 0 12px 50px rgba(84, 101, 196, 0.15);
+    }
+
+    /* Navigation */
+    .nav-glass {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .nav-link {
+      position: relative;
+      color: #64748b;
+      transition: all 0.3s;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      padding: 4px 0;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #5465c4;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #5465c4;
+      transition: width 0.3s;
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* Pills */
+    .pill {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      color: #1E293B;
+      transition: all 0.3s;
+    }
+
+    .pill:hover {
+      background: rgba(84, 101, 196, 0.12);
+      border-color: rgba(84, 101, 196, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .pill-active {
+      background: rgba(84, 101, 196, 0.15);
+      border-color: rgba(84, 101, 196, 0.35);
+    }
+
+    /* Card Hover Effect */
+    .card-lift {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 60px rgba(84, 101, 196, 0.18);
+    }
+
+    /* Typing Animation */
+    .typing-text {
+      display: inline-block;
+      border-right: 2px solid #5465c4;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { border-color: #5465c4; }
+      51%, 100% { border-color: transparent; }
+    }
+
+    /* Drawer */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.2);
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s;
+    }
+
+    .drawer-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 42%;
+      max-width: 580px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      border-left: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: -25px 0 80px rgba(0, 0, 0, 0.12);
+      z-index: 101;
+      transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+    }
+
+    .drawer.active {
+      transform: translateX(0);
+    }
+
+    @media (max-width: 768px) {
+      .drawer { width: 100%; }
+    }
+
+    /* Timeline */
+    .timeline-line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, #5465c4 20%, #5465c4 80%, transparent);
+    }
+
+    /* Tooltip */
+    .tooltip-trigger {
+      position: relative;
+    }
+
+    .tooltip-content {
+      position: absolute;
+      bottom: calc(100% + 16px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 50;
+    }
+
+    .tooltip-trigger:hover .tooltip-content {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .qr-placeholder {
+      width: 140px;
+      height: 140px;
+      background: linear-gradient(135deg, #f0f4ff 0%, #e8edff 100%);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed #5465c4;
+    }
+
+    /* Scroll Indicator */
+    .scroll-hint {
+      animation: bounce 2.5s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(12px); }
+    }
+
+    /* Section Labels */
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #5465c4;
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-size: 40px;
+      font-weight: 700;
+      color: #1E293B;
+      letter-spacing: -1px;
+      margin-bottom: 40px;
+    }
+
+    /* Photo Frame */
+    .photo-frame {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(84, 101, 196, 0.1) 0%, transparent 50%, rgba(84, 101, 196, 0.05) 100%);
+      pointer-events: none;
+    }
+
+    /* Icon Box */
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      background: rgba(84, 101, 196, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5465c4;
+    }
+  </style>
+</head>
+<body>
+  <!-- Mesh Background -->
+  <div class="mesh-bg">
+    <div class="mesh-blob blob-1"></div>
+    <div class="mesh-blob blob-2"></div>
+    <div class="mesh-blob blob-3"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 inset-x-0 z-50 px-6 py-4">
+    <div class="nav-glass rounded-2xl px-8 py-4 flex justify-between items-center max-w-6xl mx-auto">
+      <a href="#home" class="text-lg font-bold text-dark tracking-tight">诸葛璐瑶（Aidan）</a>
+      <div class="flex gap-10">
+        <a href="#home" class="nav-link active">首页</a>
+        <a href="#research" class="nav-link">研究</a>
+        <a href="#experience" class="nav-link">经历</a>
+        <a href="#capabilities" class="nav-link">能力</a>
+        <a href="#connect" class="nav-link">联系</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="snap-container" id="main">
+
+    <!-- Section 1: Home -->
+    <section id="home" class="snap-section">
+      <div class="h-full grid grid-cols-2 gap-16 items-center px-20 pt-20">
+        <!-- Left: Photo -->
+        <div class="flex justify-center items-center h-full">
+          <div class="photo-frame w-72 h-72 rounded-full overflow-hidden shadow-2xl">
+            <img src="/avatar.png" alt="个人照片" class="w-full h-full object-cover">
+          </div>
+        </div>
+
+        <!-- Right: Content -->
+        <div class="py-20">
+          <p class="text-2xl font-light text-primary mb-6 tracking-wide">hi</p>
+          <h1 class="text-6xl font-bold text-dark leading-tight mb-4">
+            I'm <span class="text-primary">Aidan</span><br>
+            <span class="text-dark">(诸葛璐瑶)</span>
+          </h1>
+          <p class="text-2xl text-slate-400 font-light mb-10">welcome to my space :)</p>
+
+          <!-- Dynamic Tags -->
+          <div class="h-14 flex items-center">
+            <span id="typingDisplay" class="text-lg font-medium text-slate-600"></span>
+            <span class="typing-text text-lg font-medium text-primary" id="typingCursor">&nbsp;</span>
+          </div>
+
+          <div class="flex gap-3 mt-6 flex-wrap">
+            <button onclick="setTag(0)" class="pill pill-active" id="tag0">Law × Finance</button>
+            <button onclick="setTag(1)" class="pill" id="tag1">Web3 Explorer</button>
+            <button onclick="setTag(2)" class="pill" id="tag2">Creative Designer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Hint -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 scroll-hint">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2">
+          <path d="M12 5v14M19 12l-7 7-7-7"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Section 2: Research -->
+    <section id="research" class="snap-section flex items-center px-20">
+      <div class="w-full pt-20">
+        <p class="section-label">研究成果</p>
+        <h2 class="section-heading">法律与行业研究</h2>
+
+        <div class="grid grid-cols-3 gap-6">
+          <!-- Card 1 -->
+          <div class="glass glass-hover rounded-3xl p-8 card-lift cursor-pointer h-[320px] flex flex-col" onclick="openDrawer('research-web3')">
+            <div class="icon-box mb-6">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-dark mb-3">中国式Web3.0发展范式</h3>
+            <p class="text-slate-500 text-sm mb-4">2026 · Web3 · 合规框架</p>
+            <p class="text-slate-600 text-sm leading-relaxed flex-1">界定数字人民币2.0与开放许可链的合规路径，构建深港"前店后厂"架构方案...</p>
+            <button class="mt-6 text-primary font-medium text-sm flex items-center gap-2 group">
+              阅读更多
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="glass glass-hover rounded-3xl p-8 card-lift cursor-pointer h-[320px] flex flex-col" onclick="openDrawer('research-privacy')">
+            <div class="icon-box mb-6">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-dark mb-3">个人信息出境合规指引</h3>
+            <p class="text-slate-500 text-sm mb-4">2026 · 数据合规 · 个保法</p>
+            <p class="text-slate-600 text-sm leading-relaxed flex-1">深度解析"评估+合同+认证"三支柱框架，构建量化风险识别模型...</p>
+            <button class="mt-6 text-primary font-medium text-sm flex items-center gap-2 group">
+              阅读更多
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="glass glass-hover rounded-3xl p-8 card-lift cursor-pointer h-[320px] flex flex-col" onclick="openDrawer('research-labor')">
+            <div class="icon-box mb-6">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-dark mb-3">劳动争议举证责任分配</h3>
+            <p class="text-slate-500 text-sm mb-4">2025 · 劳动法 · 诉讼策略</p>
+            <p class="text-slate-600 text-sm leading-relaxed flex-1">系统梳理"谁主张谁举证"到"举证责任倒置"的动态分配逻辑...</p>
+            <button class="mt-6 text-primary font-medium text-sm flex items-center gap-2 group">
+              阅读更多
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Experience -->
+    <section id="experience" class="snap-section flex items-center px-20">
+      <div class="w-full pt-20">
+        <p class="section-label">职业旅程</p>
+        <h2 class="section-heading">职业经历</h2>
+
+        <div class="grid grid-cols-2 gap-x-16 gap-y-8">
+          <!-- Timeline with cards -->
+          <div class="relative pl-8">
+            <div class="timeline-line"></div>
+
+            <!-- Card 1 -->
+            <div class="glass glass-hover rounded-2xl p-7 mb-6 card-lift cursor-pointer" onclick="openDrawer('exp-moledao')">
+              <div class="flex items-start gap-4">
+                <div class="icon-box w-12 h-12">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p class="text-xs text-primary font-medium mb-1">2026.4</p>
+                  <h3 class="text-lg font-semibold text-dark mb-1">Moledao</h3>
+                  <p class="text-slate-500 text-sm">Web3 行业研究</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="glass glass-hover rounded-2xl p-7 mb-6 card-lift cursor-pointer" onclick="openDrawer('exp-taheta')">
+              <div class="flex items-start gap-4">
+                <div class="icon-box w-12 h-12">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p class="text-xs text-primary font-medium mb-1">2025.3 - 2025.9</p>
+                  <h3 class="text-lg font-semibold text-dark mb-1">泰和泰律师事务所</h3>
+                  <p class="text-slate-500 text-sm">争议解决 · 实习生</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="glass glass-hover rounded-2xl p-7 mb-6 card-lift cursor-pointer" onclick="openDrawer('exp-clinic')">
+              <div class="flex items-start gap-4">
+                <div class="icon-box w-12 h-12">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p class="text-xs text-primary font-medium mb-1">2024.9 - 2025.12</p>
+                  <h3 class="text-lg font-semibold text-dark mb-1">法律诊所</h3>
+                  <p class="text-slate-500 text-sm">劳动行政 · 独立办案</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="glass glass-hover rounded-2xl p-7 card-lift cursor-pointer" onclick="openDrawer('exp-shisong')">
+              <div class="flex items-start gap-4">
+                <div class="icon-box w-12 h-12">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p class="text-xs text-primary font-medium mb-1">2024.7 - 2024.9</p>
+                  <h3 class="text-lg font-semibold text-dark mb-1">石松律师事务所</h3>
+                  <p class="text-slate-500 text-sm">破产重组 · 实习生</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side visual -->
+          <div class="flex items-center justify-center">
+            <div class="text-center">
+              <div class="w-48 h-48 rounded-full bg-gradient-to-br from-primary/20 to-purple-400/20 flex items-center justify-center mb-8 mx-auto">
+                <div class="w-32 h-32 rounded-full bg-gradient-to-br from-primary/30 to-indigo-400/30 flex items-center justify-center">
+                  <span class="text-6xl font-bold text-primary">4</span>
+                </div>
+              </div>
+              <p class="text-slate-500">段实习经历</p>
+              <p class="text-dark font-medium mt-2">跨越法律与科技领域</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Capabilities -->
+    <section id="capabilities" class="snap-section flex items-center px-20">
+      <div class="w-full pt-20">
+        <p class="section-label">我的能力</p>
+        <h2 class="section-heading">能力与工具</h2>
+
+        <div class="grid grid-cols-3 gap-8">
+          <!-- Container 1 -->
+          <div class="glass rounded-3xl p-8 h-[420px] flex flex-col">
+            <div class="icon-box mb-6">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-dark mb-2">Legal & Language</h3>
+            <p class="text-slate-500 text-sm mb-6">专业能力与语言资质</p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="pill text-xs py-2 px-4">雅思 6.5</span>
+              <span class="pill text-xs py-2 px-4">CET-6 556</span>
+            </div>
+
+            <ul class="space-y-3 text-sm text-slate-600 flex-1">
+              <li class="flex items-start gap-3">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5465c4" stroke-width="2" class="mt-0.5 flex-shrink-0">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                双语合同审查
+              </li>
+              <li class="flex items-start gap-3">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5465c4" stroke-width="2" class="mt-0.5 flex-shrink-0">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                法律检索矩阵
+              </li>
+              <li class="flex items-start gap-3">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5465c4" stroke-width="2" class="mt-0.5 flex-shrink-0">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                争议解决策略
+              </li>
+              <li class="flex items-start gap-3">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5465c4" stroke-width="2" class="mt-0.5 flex-shrink-0">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                案例深度分析
+              </li>
+            </ul>
+          </div>
+
+          <!-- Container 2 -->
+          <div class="glass rounded-3xl p-8 h-[420px] flex flex-col">
+            <div class="icon-box mb-6">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-dark mb-2">Web3 & AI Tech</h3>
+            <p class="text-slate-500 text-sm mb-6">前沿科技工具运用</p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="pill text-xs py-2 px-4">MetaMask</span>
+              <span class="pill text-xs py-2 px-4">DeFi</span>
+            </div>
+
+            <ul class="space-y-3 text-sm text-slate-600 flex-1">
+              <li class="flex items-start gap-3">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5465c4" stroke-width="2" class="mt-0.5 flex-shrink-0">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                ChatGPT / Gemini 提效
+              </li>
+              <li class="flex items-start gap-3">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5465c4" stroke-width="2" class="mt-0.5 flex-shrink-0">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                NotebookLM / MetaLaw
+              </li>
+              <li class="flex items-start gap-3">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5465c4" stroke-width="2" class="mt-0.5 flex-shrink-0">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                Mermaid 法律逻辑图表化
+              </li>
+              <li class="flex items-start gap-3">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5465c4" stroke-width="2" class="mt-0.5 flex-shrink-0">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                智能合约合规分析
+              </li>
+            </ul>
+          </div>
+
+          <!-- Container 3 -->
+          <div class="glass rounded-3xl p-8 h-[420px] flex flex-col">
+            <div class="icon-box mb-6">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                <path d="M2 2l7.586 7.586"/>
+                <circle cx="11" cy="11" r="2"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-dark mb-2">Creative & Arts</h3>
+            <p class="text-slate-500 text-sm mb-6">设计创意与艺术表达</p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="pill text-xs py-2 px-4">PS</span>
+              <span class="pill text-xs py-2 px-4">AI</span>
+              <span class="pill text-xs py-2 px-4">MIDI</span>
+            </div>
+
+            <ul class="space-y-3 text-sm text-slate-600 flex-1">
+              <li class="flex items-start gap-3">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5465c4" stroke-width="2" class="mt-0.5 flex-shrink-0">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                坤元衡泰杯文创大赛三等奖
+              </li>
+              <li class="flex items-start gap-3">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5465c4" stroke-width="2" class="mt-0.5 flex-shrink-0">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                乐队吉他兼主唱
+              </li>
+              <li class="flex items-start gap-3">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5465c4" stroke-width="2" class="mt-0.5 flex-shrink-0">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                公众号漫画 10000+ 浏览
+              </li>
+              <li class="flex items-start gap-3">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5465c4" stroke-width="2" class="mt-0.5 flex-shrink-0">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                乒乓球女双亚军
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Connect -->
+    <section id="connect" class="snap-section flex items-center justify-center">
+      <div class="text-center pt-20">
+        <p class="section-label">取得联系</p>
+        <h2 class="section-heading">联系我</h2>
+
+        <div class="glass rounded-3xl p-12 max-w-lg mx-auto mb-10">
+          <!-- Avatar -->
+          <div class="w-28 h-28 mx-auto mb-8 rounded-full overflow-hidden border-4 border-white shadow-xl">
+            <img src="/avatar.png" alt="个人照片" class="w-full h-full object-cover">
+          </div>
+
+          <h3 class="text-2xl font-bold text-dark mb-2">诸葛璐瑶</h3>
+          <p class="text-slate-500 mb-8">期待与您交流</p>
+
+          <!-- Contact Info -->
+          <div class="space-y-4 mb-8">
+            <a href="mailto:aisaka0000@outlook.com" class="flex items-center justify-center gap-3 text-dark hover:text-primary transition-colors py-2">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              aisaka0000@outlook.com
+            </a>
+            <div class="flex items-center justify-center gap-3 text-dark py-2">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"/>
+              </svg>
+              +86 15730898860
+            </div>
+          </div>
+
+          <!-- Social Icons -->
+          <div class="flex justify-center gap-6">
+            <!-- Twitter/X -->
+            <a href="#" class="w-12 h-12 rounded-xl glass flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/30 transition-all">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+
+            <!-- Discord -->
+            <a href="#" class="w-12 h-12 rounded-xl glass flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/30 transition-all">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+              </svg>
+            </a>
+
+            <!-- WeChat with Tooltip -->
+            <div class="tooltip-trigger">
+              <a href="#" class="w-12 h-12 rounded-xl glass flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/30 transition-all">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.558-.18h.003c1.082.19 2.196.296 3.324.296 4.8 0 8.691-3.287 8.691-7.342 0-4.055-3.891-7.343-8.691-7.343zm-3.48 12.203a5.983 5.983 0 01-1.18-2.894c0-1.33.44-2.585 1.18-3.567a.71.71 0 00.128-.752.703.703 0 00-.553-.248c-.163 0-.325.041-.483.114-.88.405-1.56 1.244-1.92 2.236-.36.993-.36 2.05 0 3.043.36.992 1.04 1.83 1.92 2.235.157.073.32.114.483.114a.703.703 0 00.553-.247.71.71 0 00.108-.747c-.73-.987-1.18-2.243-1.18-3.572 0-.324.027-.644.054-.963.013-.152.04-.301.04-.458a.557.557 0 01.052-.22.536.536 0 01.154-.212c.06-.046.126-.084.193-.12a.585.585 0 01.23-.082.61.61 0 01.24.003.57.57 0 01.211.089c.06.037.116.08.168.126.04.036.075.076.109.117.045.055.085.113.115.174a.57.57 0 01.048.198c0 .157-.027.306-.04.458a6.06 6.06 0 01-.05.476.576.576 0 01-.099.292.547.547 0 01-.22.202.57.57 0 01-.299.076h-.012a.595.595 0 01-.236-.05.58.58 0 01-.199-.14.57.57 0 01-.129-.202 5.91 5.91 0 01-.052-.306 4.88 4.88 0 01-.002-.324c0-1.013.333-1.975.95-2.749a.71.71 0 00.13-.407.703.703 0 00-.214-.507c-.135-.134-.298-.225-.478-.279a2.465 2.465 0 00-.318-.07.67.67 0 01-.161-.04.69.69 0 01-.157-.078.697.697 0 01-.154-.116.703.703 0 01-.115-.154.697.697 0 01-.078-.194.69.69 0 01-.04-.161.68.68 0 01-.027-.166.674.674 0 01.014-.165.685.685 0 01.054-.154c.028-.053.062-.105.1-.153.047-.058.1-.112.158-.158a.69.69 0 01.199-.119.692.692 0 01.478-.02c.18.055.345.147.478.28a.71.71 0 00.492.164.703.703 0 00.407-.13c.618-.773.951-1.735.951-2.748 0-.108-.004-.217-.014-.324a.69.69 0 01.027-.165.68.68 0 01.078-.161.69.69 0 01.116-.154.697.697 0 01.154-.116.69.69 0 01.194-.078.67.67 0 01.482.067c.058.027.114.06.165.098.06.046.114.098.162.153.046.055.085.113.116.175.04.06.072.124.097.19.032.08.055.162.069.246.012.104.019.208.019.312a4.11 4.11 0 01-.887 2.53.71.71 0 00-.207.5.703.703 0 00.215.508c.134.135.297.226.478.28a2.47 2.47 0 00.318.07.67.67 0 01.161.04.69.69 0 01.157.078c.05.035.105.074.154.116.05.041.094.086.134.132.04.046.075.096.108.148.04.06.072.124.097.19a3.07 3.07 0 01.118.483 3.158 3.158 0 010 .948 3.014 3.014 0 01-.118.476 3.09 3.09 0 01-.097.189.96.96 0 01-.108.146.873.873 0 01-.134.128.855.855 0 01-.154.111.78.78 0 01-.157.075.67.67 0 01-.161.04c-.103.012-.207.02-.311.02zm9.203 0a3.64 3.64 0 01-3.642-3.642c0-2.012 1.63-3.642 3.642-3.642 2.012 0 3.642 1.63 3.642 3.642 0 2.011-1.63 3.642-3.642 3.642zm0-9.573a5.973 5.973 0 00-5.972 5.972c0 1.556.602 3.003 1.61 4.122a.71.71 0 00.228.198.696.696 0 00.298.064.71.71 0 00.299-.064c.083-.038.16-.092.228-.198a5.973 5.973 0 003.337-4.122 5.973 5.973 0 00-5.972-5.972h-.056zm0 8.566a2.7 2.7 0 01-2.697-2.697 2.7 2.7 0 012.697-2.697 2.7 2.7 0 012.697 2.697 2.7 2.7 0 01-2.697 2.697z"/>
+                </svg>
+              </a>
+              <div class="tooltip-content">
+                <div class="qr-placeholder">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#5465c4" stroke-width="1.5">
+                    <rect x="3" y="3" width="7" height="7"/>
+                    <rect x="14" y="3" width="7" height="7"/>
+                    <rect x="3" y="14" width="7" height="7"/>
+                    <rect x="14" y="14" width="7" height="7"/>
+                  </svg>
+                  <p class="text-xs text-slate-400 mt-2">微信公众号</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-slate-400 text-sm">© 2026 诸葛璐瑶. All rights reserved.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Drawer Overlay -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+  <!-- Drawer -->
+  <div class="drawer" id="drawer">
+    <div class="p-10">
+      <button onclick="closeDrawer()" class="absolute top-6 right-6 w-10 h-10 rounded-xl glass flex items-center justify-center text-slate-400 hover:text-dark hover:border-primary/30 transition-all">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+      <p class="text-sm text-primary font-medium mb-3" id="drawerCategory">研究</p>
+      <h3 class="text-2xl font-bold text-dark mb-6" id="drawerTitle">Title</h3>
+      <div class="w-12 h-1 bg-primary/30 rounded-full mb-8"></div>
+      <div class="text-slate-600 leading-relaxed" id="drawerContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // Typing Animation
+    const tags = [
+      'Law × Finance Dual Degree',
+      'Web3 & AI Explorer',
+      'Creative Designer'
+    ];
+    let currentTag = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingSpeed = 80;
+    const deletingSpeed = 40;
+    const pauseDuration = 2000;
+
+    function typeTag() {
+      const display = document.getElementById('typingDisplay');
+      const currentText = tags[currentTag];
+
+      if (isDeleting) {
+        display.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        display.textContent = currentText.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      let timeout = isDeleting ? deletingSpeed : typingSpeed;
+
+      if (!isDeleting && charIndex === currentText.length) {
+        timeout = pauseDuration;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        currentTag = (currentTag + 1) % tags.length;
+        timeout = 500;
+      }
+
+      setTimeout(typeTag, timeout);
+    }
+
+    setTimeout(typeTag, 1000);
+
+    // Tag Button Handler
+    function setTag(index) {
+      currentTag = index;
+      charIndex = 0;
+      isDeleting = false;
+      document.querySelectorAll('.pill').forEach((p, i) => {
+        p.classList.toggle('pill-active', i === index);
+      });
+    }
+
+    // Drawer Content Data
+    const drawerData = {
+      'research-web3': {
+        category: '法律研究',
+        title: '中国式Web3.0发展范式：底层技术赋能、强合规驱动与主权数字货币生态的深度融合',
+        content: `
+          <div class="space-y-6">
+            <p class="text-slate-500 text-sm">2026 | Web3 | 合规框架</p>
+
+            <div class="space-y-4 text-slate-600 leading-relaxed">
+              <p><strong>摘要</strong></p>
+              <p>本文界定以数字人民币2.0（Programmable Money）与开放许可链（OPC）为底层架构的合规路径，解析mBridge跨境结算与DID实名监管体系。</p>
+
+              <p><strong>核心分析模型："电网-电表-保险丝"治理</strong></p>
+              <p>针对数据要素市场化构建"电网-电表-保险丝"治理模型，实现数据流动的可控可管。</p>
+
+              <p><strong>深港"前店后厂"架构</strong></p>
+              <p>输出深港"前店后厂"架构下的合规防火墙方案，为跨国数字资产运营提供合规指引。</p>
+
+              <div class="glass rounded-xl p-5 mt-6">
+                <p class="text-sm font-medium text-dark mb-2">关键词</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="pill text-xs py-1 px-3">数字人民币</span>
+                  <span class="pill text-xs py-1 px-3">开放许可链</span>
+                  <span class="pill text-xs py-1 px-3">mBridge</span>
+                  <span class="pill text-xs py-1 px-3">DID</span>
+                  <span class="pill text-xs py-1 px-3">RWA</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      'research-privacy': {
+        category: '法律研究',
+        title: '跨国企业个人信息出境合规实务指引（2026版）',
+        content: `
+          <div class="space-y-6">
+            <p class="text-slate-500 text-sm">2026 | 数据合规 | 个人信息保护</p>
+
+            <div class="space-y-4 text-slate-600 leading-relaxed">
+              <p><strong>摘要</strong></p>
+              <p>深度解析《个保法》下"评估+合同+认证"三支柱框架，针对跨国HR管理及跨境电商（TikTok Shop）等高频场景。</p>
+
+              <p><strong>量化风险识别模型（Risk Matrix）</strong></p>
+              <p>构建了量化风险识别模型与合规初筛"10问"清单，帮助企业快速判断合规状态。</p>
+
+              <p><strong>从"合规负担"到"合规竞争力"</strong></p>
+              <p>提出从"合规负担"向"合规竞争力"转化的路径，帮助企业在全球化背景下建立数据合规优势。</p>
+
+              <div class="glass rounded-xl p-5 mt-6">
+                <p class="text-sm font-medium text-dark mb-2">适用场景</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="pill text-xs py-1 px-3">跨国HR管理</span>
+                  <span class="pill text-xs py-1 px-3">TikTok Shop</span>
+                  <span class="pill text-xs py-1 px-3">跨境电商</span>
+                  <span class="pill text-xs py-1 px-3">数据出境评估</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      'research-labor': {
+        category: '法律研究',
+        title: '劳动争议举证责任分配：法律要件解构与博弈策略指引',
+        content: `
+          <div class="space-y-6">
+            <p class="text-slate-500 text-sm">2025 | 劳动法 | 诉讼策略</p>
+
+            <div class="space-y-4 text-slate-600 leading-relaxed">
+              <p><strong>摘要</strong></p>
+              <p>系统化梳理了劳动争议中从"谁主张谁举证"到"举证责任倒置"的动态分配逻辑。</p>
+
+              <p><strong>实务举证矩阵</strong></p>
+              <p>针对加班费认定、违法解除、社保补缴等高频争议点构建了实务举证矩阵。</p>
+
+              <p><strong>最低限度举证策略</strong></p>
+              <p>创新性地提出仲裁阶段"最低限度举证策略"，帮助当事人在证据劣势下最大化利益保护。</p>
+
+              <div class="glass rounded-xl p-5 mt-6">
+                <p class="text-sm font-medium text-dark mb-2">高频争议点</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="pill text-xs py-1 px-3">加班费认定</span>
+                  <span class="pill text-xs py-1 px-3">违法解除</span>
+                  <span class="pill text-xs py-1 px-3">社保补缴</span>
+                  <span class="pill text-xs py-1 px-3">竞业限制</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      'exp-moledao': {
+        category: '实习经历',
+        title: 'Moledao - Web3 行业研究',
+        content: `
+          <div class="space-y-6">
+            <p class="text-slate-500 text-sm">2026.4 | Web3 | 实习</p>
+
+            <div class="space-y-4 text-slate-600 leading-relaxed">
+              <p><strong>工作内容</strong></p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>系统学习区块链基础、DeFi、交易所运作机制</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>梳理虚拟资产行业监管框架（交易、托管、RWA等业务模式）</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>关注香港等地区的合规路径（如牌照制逻辑）</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>产出专业文章《中国式Web3.0发展范式》</span>
+                </li>
+              </ul>
+
+              <div class="glass rounded-xl p-5 mt-6">
+                <p class="text-sm font-medium text-dark mb-2">核心产出</p>
+                <p>《中国式Web3.0发展范式》— 深度分析数字人民币与开放许可链的合规架构</p>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      'exp-taheta': {
+        category: '实习经历',
+        title: '泰和泰（成都）律师事务所 - 争议解决',
+        content: `
+          <div class="space-y-6">
+            <p class="text-slate-500 text-sm">2025.3 - 2025.9 | 律师事务所 | 实习生</p>
+
+            <div class="space-y-4 text-slate-600 leading-relaxed">
+              <p><strong>工作成果</strong></p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>竞业限制纠纷：300余份判例深度检索，成功减免违约金<strong>60%以上</strong></span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>名誉权纠纷：8000字分析报告，为百万粉丝网文作者维权提供支持</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>宠物法：3篇文章累计2万余字，单篇阅读量近3000</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>小红书运营：60余篇推文，账号粉丝突破5000</span>
+                </li>
+              </ul>
+
+              <div class="glass rounded-xl p-5 mt-6">
+                <p class="text-sm font-medium text-dark mb-2">擅长领域</p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="pill text-xs py-1 px-3">竞业限制</span>
+                  <span class="pill text-xs py-1 px-3">名誉权</span>
+                  <span class="pill text-xs py-1 px-3">宠物法</span>
+                  <span class="pill text-xs py-1 px-3">社交媒体运营</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      'exp-clinic': {
+        category: '实习经历',
+        title: '西南政法大学法律诊所 - 劳动行政',
+        content: `
+          <div class="space-y-6">
+            <p class="text-slate-500 text-sm">2024.9 - 2025.12 | 法律诊所 | 实习生</p>
+
+            <div class="space-y-4 text-slate-600 leading-relaxed">
+              <p><strong>独立承办案件</strong></p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>10余起劳动争议案件，涵盖工伤保险、劳务派遣、确认劳动关系</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>成功调解3起，帮助当事人获赔总额<strong>7.6万余元</strong></span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>攻克10年前劳动关系社保补缴难题，在证据原件缺失情况下完成认定</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>起草核心文书20余份</span>
+                </li>
+              </ul>
+
+              <div class="glass rounded-xl p-5 mt-6">
+                <p class="text-sm font-medium text-dark mb-2">业绩亮点</p>
+                <p>工伤赔偿<span class="text-primary font-semibold">7万元</span> + 劳动报酬<span class="text-primary font-semibold">0.6万元</span></p>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      'exp-shisong': {
+        category: '实习经历',
+        title: '重庆市石松律师事务所 - 破产重组',
+        content: `
+          <div class="space-y-6">
+            <p class="text-slate-500 text-sm">2024.7 - 2024.9 | 律师事务所 | 实习生</p>
+
+            <div class="space-y-4 text-slate-600 leading-relaxed">
+              <p><strong>工作内容</strong></p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>参与企业破产清算案，穿透式债权审查</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>协助客户确认<strong>百万级优先债权</strong></span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>起草法律文书20余份</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></span>
+                  <span>损害公司债权人利益纠纷、合伙合同纠纷等案例检索</span>
+                </li>
+              </ul>
+
+              <div class="glass rounded-xl p-5 mt-6">
+                <p class="text-sm font-medium text-dark mb-2">核心成果</p>
+                <p>10,000余字案例检索报告</p>
+              </div>
+            </div>
+          </div>
+        `
+      }
+    };
+
+    // Drawer Functions
+    function openDrawer(key) {
+      const data = drawerData[key];
+      if (!data) return;
+
+      document.getElementById('drawerCategory').textContent = data.category;
+      document.getElementById('drawerTitle').textContent = data.title;
+      document.getElementById('drawerContent').innerHTML = data.content;
+
+      document.getElementById('drawer').classList.add('active');
+      document.getElementById('drawerOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      document.getElementById('drawer').classList.remove('active');
+      document.getElementById('drawerOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Navigation active state
+    const sections = document.querySelectorAll('.snap-section');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + id) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, { threshold: 0.5 });
+
+    sections.forEach(section => observer.observe(section));
+
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDrawer();
+    });
+  </script>
+</body>
+</html>
