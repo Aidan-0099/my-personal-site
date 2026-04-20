@@ -238,8 +238,129 @@
       transform: translateX(0);
     }
 
-    @media (max-width: 768px) {
+@media (max-width: 768px) {
       .drawer { width: 100%; }
+
+      /* Mobile Navigation */
+      nav > div {
+        padding: 12px 16px;
+      }
+      nav .flex.gap-10 {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 20px;
+        gap: 16px;
+        border-radius: 0 0 20px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-top: none;
+      }
+      nav .flex.gap-10.active {
+        display: flex;
+      }
+      .mobile-menu-btn {
+        display: flex !important;
+      }
+      .mobile-menu {
+        display: none;
+      }
+      .mobile-menu.flex {
+        display: flex;
+      }
+      .hidden {
+        display: none !important;
+      }
+
+      /* Home Section */
+      #home .grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+        padding-top: 100px;
+      }
+      #home .photo-frame {
+        width: 180px !important;
+        height: 180px !important;
+        margin: 0 auto;
+      }
+      #home h1 {
+        font-size: 36px !important;
+        text-align: center;
+      }
+      #home .text-2xl {
+        font-size: 18px !important;
+        text-align: center;
+      }
+      #home .flex.items-center.h-14 {
+        justify-content: center;
+      }
+      #home .flex.gap-3 {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* Research Section */
+      #research .grid.grid-cols-3 {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+      #research .glass {
+        padding: 20px !important;
+        height: auto !important;
+      }
+
+      /* Experience Section */
+      #experience .grid.grid-cols-2 {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+      #experience .relative.pl-8 {
+        padding-left: 0 !important;
+      }
+      #experience .timeline-line {
+        display: none;
+      }
+      #experience .grid.cols-2 > div:last-child {
+        display: none;
+      }
+
+      /* Capabilities Section */
+      #capabilities .grid.grid-cols-3 {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+      #capabilities .glass {
+        height: auto !important;
+        padding: 20px !important;
+      }
+
+      /* Connect Section */
+      #connect .glass {
+        padding: 24px !important;
+      }
+      #connect .w-28.h-28 {
+        width: 100px !important;
+        height: 100px !important;
+      }
+
+      /* Typography */
+      .section-heading {
+        font-size: 28px !important;
+        margin-bottom: 24px !important;
+      }
+      .section-label {
+        font-size: 11px !important;
+      }
+
+      /* Pills */
+      .pill {
+        padding: 8px 16px;
+        font-size: 13px;
+      }
     }
 
     /* Timeline */
@@ -350,16 +471,29 @@
   </div>
 
   <!-- Navigation -->
-  <nav class="fixed top-0 inset-x-0 z-50 px-6 py-4">
-    <div class="nav-glass rounded-2xl px-8 py-4 flex justify-between items-center max-w-6xl mx-auto">
-      <a href="#home" class="text-lg font-bold text-dark tracking-tight">诸葛璐瑶（Aidan）</a>
-      <div class="flex gap-10">
-        <a href="#home" class="nav-link active">首页</a>
-        <a href="#research" class="nav-link">研究</a>
-        <a href="#experience" class="nav-link">经历</a>
-        <a href="#capabilities" class="nav-link">能力</a>
-        <a href="#connect" class="nav-link">联系</a>
+  <nav class="fixed top-0 inset-x-0 z-50 px-4 py-3">
+    <div class="nav-glass rounded-xl px-5 py-3 flex justify-between items-center max-w-6xl mx-auto">
+      <a href="#home" class="text-base font-bold text-dark tracking-tight">诸葛璐瑶（Aidan）</a>
+      <div class="flex gap-6" id="navLinks">
+        <a href="#home" class="nav-link active text-xs">首页</a>
+        <a href="#research" class="nav-link text-xs">研究</a>
+        <a href="#experience" class="nav-link text-xs">经历</a>
+        <a href="#capabilities" class="nav-link text-xs">能力</a>
+        <a href="#connect" class="nav-link text-xs">联系</a>
       </div>
+      <button class="mobile-menu-btn hidden flex-col gap-1.5 p-2" onclick="toggleMobileMenu()">
+        <span class="w-5 h-0.5 bg-dark rounded-full"></span>
+        <span class="w-5 h-0.5 bg-dark rounded-full"></span>
+        <span class="w-5 h-0.5 bg-dark rounded-full"></span>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden flex-col gap-3 mt-2 mx-4 p-4 nav-glass rounded-xl" id="mobileMenu">
+      <a href="#home" class="nav-link active text-sm py-2">首页</a>
+      <a href="#research" class="nav-link text-sm py-2">研究</a>
+      <a href="#experience" class="nav-link text-sm py-2">经历</a>
+      <a href="#capabilities" class="nav-link text-sm py-2">能力</a>
+      <a href="#connect" class="nav-link text-sm py-2">联系</a>
     </div>
   </nav>
 
@@ -1138,6 +1272,12 @@
       document.getElementById('drawer').classList.remove('active');
       document.getElementById('drawerOverlay').classList.remove('active');
       document.body.style.overflow = '';
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
     }
 
     // Navigation active state
