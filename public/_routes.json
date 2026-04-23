@@ -1,5 +1,0 @@
-{
-  "version": 1,
-  "include": ["/*"],
-  "exclude": ["/avatar.png", "/favicon.svg", "/icons.svg", "/_next/static/*", "/_next/data/*"]
-}
